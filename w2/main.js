@@ -9,3 +9,7 @@ const uberPlus = 12
 // don't take transportation or flights.
 // Only persoanl vehicle usage was added
 const carbonTotal = houseHold + apartment + meatBalance + midWasher + needyFam + cleanHouse + semiRecycler + uberPlus
+
+//only way I can change. it worked. However does this make myChange a string or int?
+const myChange = document.querySelector("h4");
+myChange.textContent = carbonTotal

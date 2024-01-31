@@ -70,7 +70,7 @@ let greetingElement = document.getElementById("greeting");
 greetingElement.textContent = `Hey ${yourName}`;
 
 let houseSize = window.prompt(
-  "And what is your house size? Choose a number. Large is 10, medium is 7, small is 4, apartment is 2."
+  "And what is your house size? Is it large, medium, small, or apartment?."
 );
 let houseInfo = document.getElementById("house");
 

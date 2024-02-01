@@ -26,27 +26,27 @@ function determineHouseHoldPts(numberInHousehold) {
 
 
 function pointsforHouseSize(houseSize) {
-  let houseInfo = document.getElementById("house");
+  //let houseInfo = document.getElementById("house");
   let wrongAnswer = "";
   switch (houseSize) {
     case "large":
       houseSize = 10;
-      houseInfo.textContent = `Carbon Footprint is ${houseSize} pts.`;
+      //houseInfo.textContent = `Carbon Footprint is ${houseSize} pts.`;
       break;
     case "medium":
       houseSize = 7;
-      houseInfo.textContent = `Your carbon Footprint is ${houseSize} pts.`;
+      //houseInfo.textContent = `Your carbon Footprint is ${houseSize} pts.`;
       break;
     case "small":
       houseSize = 4;
-      houseInfo.textContent = `Your carbon Footprint is ${houseSize} pts.`;
+      //houseInfo.textContent = `Your carbon Footprint is ${houseSize} pts.`;
       break;
     case "apartment":
       houseSize = 2;
-      houseInfo.textContent = `Your Carbon Footprint is ${houseSize}pts.`;
+      //houseInfo.textContent = `Your Carbon Footprint is ${houseSize}pts.`;
       break;
     default:
-      wrongAnswer = window.prompt("Sorry no nintendo!");
+      //wrongAnswer = window.prompt("Sorry no nintendo!");
       break;
   }
   
@@ -65,10 +65,32 @@ function start(numberInHousehold, houseSize) {
 
 
 function displayOutput() {
+  for (arr of cfpData){
+    console.log(arr)
+    const output = document.getElementById("output")
+    const newHr = document.createElement("hr")
+    
+
+    const newP = document.createElement("p")
+    newP.textContent = `House hold size is: ${arr[0]}`;
+    output.appendChild(newP)
+    
+
+    const newP1 = document.createElement("p")
+    newP1.textContent = `The size of my home is: ${arr[1]}`;
+    output.appendChild(newP1)
+    
+    const newP2 = document.createElement("p")
+    newP2.textContent = `Carbon Footprint total is: ${arr[4]}`;
+    output.appendChild(newP2)
+    output.appendChild(newHr)
+  }
+}
+
 start(1,"large");
 start(2,"medium")
 start(3,"small")
 start(4,"apartment")
 start(5,"")
-}
+
 displayOutput()

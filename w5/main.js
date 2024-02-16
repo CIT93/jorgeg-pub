@@ -87,7 +87,7 @@ function displayObjectOutput(objectCollector) {
     const newHr = document.createElement("hr");
 
     const newP = document.createElement("p");
-    newP.textContent = `House hold size is: ${objectCollector[arr].numberInHousehold}`; // Access elements of objectCollector
+    newP.textContent = `House hold size is: ${objectCollector[arr].numberNHouse}`; // Access elements of objectCollector
     output.appendChild(newP);
 
     const newP1 = document.createElement("p");

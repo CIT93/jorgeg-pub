@@ -48,7 +48,7 @@ function pointsforHouseSize(houseSize) {
   return houseSize;
 }
 
-function start(numberInHousehold, houseSize) {
+function start(numberInHousehold, houseSize, firstName, lastName) {
   const casaPoints = determineHouseHoldPts(numberInHousehold);
   const CasaSizePoints = pointsforHouseSize(houseSize);
   console.log("this is determine in function:", CasaSizePoints);
@@ -61,6 +61,8 @@ function start(numberInHousehold, houseSize) {
     housePTS: casaPoints,
     houseSP: CasaSizePoints,
     totalP: totalPoints,
+    firstN: firstName,
+    lastN: lastName
   };
 
   return dataObject; // returns dataObject which I can now push into objectCollector data it returns.
@@ -73,56 +75,39 @@ function displayObjectOutput(objectC) {
     const newHr = document.createElement("hr");
 
     const newP = document.createElement("p");
-    newP.textContent = `House hold size is: ${objectC[arr].numberNHouse}`; // Access elements of objectCollector
+    newP.textContent = ` ${objectC[arr].firstN} ${objectC[arr].lastN} Carbon Footprint is:`;
     output.appendChild(newP);
 
     const newP1 = document.createElement("p");
-    newP1.textContent = `The size of my home is: ${objectC[arr].houseS}`;
+    newP1.textContent = `House hold size is: ${objectC[arr].numberNHouse}`; // Access elements of objectCollector
     output.appendChild(newP1);
 
     const newP2 = document.createElement("p");
-    newP2.textContent = `Carbon Footprint total is: ${objectC[arr].totalP}`;
+    newP2.textContent = `The size of my home is: ${objectC[arr].houseS}`;
     output.appendChild(newP2);
+
+    const newP3 = document.createElement("p");
+    newP3.textContent = `Carbon Footprint total is: ${objectC[arr].totalP}`;
+    output.appendChild(newP3);
     output.appendChild(newHr);
   }
 }
 
-// objectCollector = [];
-// objectCollector.push(start(1, "large"));
-// objectCollector.push(start(2, "medium"));
-// objectCollector.push(start(3, "small"));
-// console.log("test array:", objectCollector);
-//displayObjectOutput(objectCollector);
-
-//addEventListener is a call back function, it is also asynchronous
-/*Asynchronous: of or requiring a form of computer control timing protocol in which a specific operation begins upon receipt
-of an indication (signal) that the preceding operation has been completed 
-1. Not happening at the same time
-2. Something must happen to activate it */
-
 //Put FORM in front because that tells you what your looking into, listening for
 //this code only runs if something happens
-FORM.addEventListener("submit",function(e){// pass e function within "function()""
-  e.preventDefault(); //e stands for the event. preventDefault stops it from going to default activity
-  // console.log("I'm inside the callback function")
-  // console.log(e)
-  const firstName = FORM.firstname.value;//recording values into firstName from input box first name.
+FORM.addEventListener("submit",function(e){
+  e.preventDefault(); 
+  const firstName = FORM.firstname.value;
   const lastName = FORM.lastname.value;
 
   const hMembers = parseInt(FORM.hmembers.value);
   const hSize = FORM.hsize.value;
   objectCollector = [];
-  objectCollector.push(start(hMembers, hSize));
+  objectCollector.push(start(hMembers, hSize,firstName,lastName));
   displayObjectOutput(objectCollector);
   FORM.reset();
 })
 
 
 
-//======ASSIGNMENTS===RENDERING OUTPUT TO DOM=====================================================================================================================
-//Is the apartment score correct? If not why not?
-/* [my answer:] apartment score works fine at my end. However, at your end I presume maybe a bad if statement within the functions that display size for home is faulty.*/
-
-//Why are we doing all this work in the form to make sure the user gives us good data?
-/*[my answer:] because if you put false data it will render useless data in return making it confusing to understand.
-Therefore setting these boundaries are like safety rails as it guides the user to correct input data to utilize.   */
+//======ASSIGNMENTS===W6 - ADD FIRST AND LAST NAME - PUBLIC=====================================================================================================================

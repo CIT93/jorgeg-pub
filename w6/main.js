@@ -1,4 +1,5 @@
 const FORM = document.getElementById("form")
+const TBL = document.getElementById("tab-data")
 
 function determineHouseHoldPts(numberInHousehold) {
   let houseHoldPts = 0;
@@ -75,7 +76,7 @@ function displayObjectOutput(objectC) {
     const newHr = document.createElement("hr");
 
     const newP = document.createElement("p");
-    newP.textContent = ` ${objectC[arr].firstN} ${objectC[arr].lastN} Carbon Footprint is:`;
+    newP.textContent = ` ${objectC[arr].firstN} ${objectC[arr].lastN} Carbon Footprint`;
     output.appendChild(newP);
 
     const newP1 = document.createElement("p");
@@ -93,8 +94,23 @@ function displayObjectOutput(objectC) {
   }
 }
 
-//Put FORM in front because that tells you what your looking into, listening for
-//this code only runs if something happens
+function renderTbl(data){
+  console.log(data)
+  const table = document.createElement("table");
+  const thead = document.createElement("thead");
+  const tr = document.createElement("tr");
+
+  const headingTextArr = ["Name","HouseHold", "HouseSize", "Footprint", "Actions"];
+  headingTextArr.forEach(function(text){
+    const th = document.createElement("th");
+    th.textContent = text;
+    tr.appendChild(th);
+  })
+  thead.appendChild(tr);
+  table.appendChild(thead);
+  TBL.appendChild(table)
+  //console.log(table);
+}
 FORM.addEventListener("submit",function(e){
   e.preventDefault(); 
   const firstName = FORM.firstname.value;
@@ -105,9 +121,10 @@ FORM.addEventListener("submit",function(e){
   objectCollector = [];
   objectCollector.push(start(hMembers, hSize,firstName,lastName));
   displayObjectOutput(objectCollector);
+  renderTbl(objectCollector);
   FORM.reset();
 })
 
 
 
-//======ASSIGNMENTS===W6 - ADD FIRST AND LAST NAME - PUBLIC=====================================================================================================================
+//======ASSIGNMENTS===W7 - CODE ALONG - HTML TABULAR DATA - PRIVATE=========================================================================================

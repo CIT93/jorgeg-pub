@@ -1,0 +1,23 @@
+html {
+    font-size: 22px;
+  }
+  body {
+    background-color: black;
+    color: whitesmoke;
+  }
+  input:in-range {
+    background-color: aquamarine;
+  }
+  input:out-of-range {
+    background-color: rgb(235, 92, 92);
+  }
+  input[type="text"]:valid {
+    background-color: aquamarine;
+  }
+  table,th{
+    border:1px solid;
+    padding: 5px;
+  }
+  tbody {
+    text-align: center;
+  }

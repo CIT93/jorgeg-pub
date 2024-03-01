@@ -28,6 +28,7 @@ function renderTblHeading() {
 }
 
 function renderTblButton(index, data) {
+  console.log("this is index in renderTblButton:", index);
   const tr = document.createElement("tr");
   const actionsCell = document.createElement("td");
   const btnEdit = document.createElement("button");
@@ -37,15 +38,29 @@ function renderTblButton(index, data) {
   actionsCell.appendChild(btnEdit);
   actionsCell.appendChild(btnDelete);
   tr.appendChild(actionsCell);
-  
-  btnDelete.addEventListener("click", function(e){
-    data.splice(0, data.length); //erase all data in row
-    //data.splice(index, 1)// hack noted
-    console.log("this is data spliced:", data)
-    renderTblBody(data);
-    }) 
 
-    /*btnEdit.addEventListener("click", function(e){
+  btnDelete.addEventListener("click", function (e) {
+    if (index !== 0 || data.lenght !==1) {
+      console.log("this is index in btnDelete:", index);
+      console.log("this is data before splice:", data);
+      data.splice(index, 1); // hack noted
+      console.log("this is data.length after spliced:", data.length);
+      renderTblHeading(data);
+      renderTblBody(data);
+    } else {
+      console.log("inside else statement")
+      console.log("data.length:", data.length)
+      if (index === 0 && data.length === 1) {
+        data.splice(0, data.length); //erase all data in rows/ this one is dangerous
+        TBL.innerHTML = "";
+        console.log("this is data.length:", data.length)
+        console.log(index !== 0);
+      }}
+      data.splice(index, 1);
+      //renderTblBody(data)
+  });
+
+  /*btnEdit.addEventListener("click", function(e){
       data.splice(0, data.length);
       FORM.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -61,16 +76,15 @@ function renderTblButton(index, data) {
         renderTblBody(data);
       
   })*/
-  
+
   return actionsCell;
 }
 
-function renderingTheTable(data){
-  TBL.innerHTML = ""; // TAKES ALL TOYS OFF THE TABLE
+function renderingTheCells(data) {
+  TBL.innerHTML = ""; // TAKES ALL TOYS/data OFF THE TABLE
   const tbody = document.createElement("tbody");
-  
-  data.forEach(function (item, index) {
 
+  data.forEach(function (item, index) {
     const tr = document.createElement("tr");
     for (const [key, value] of Object.entries(item)) {
       console.log(`key ${key}, value ${value}`);
@@ -78,28 +92,27 @@ function renderingTheTable(data){
       if (key !== "lastN" && key !== "actions") {
         console.log("build it");
 
-        const createCells= document.createElement("td");
+        const createCells = document.createElement("td");
         createCells.textContent = value;
         console.log("this is something:", createCells);
         tr.appendChild(createCells);
         tbody.appendChild(tr);
       }
-  
     }
+    console.log("this is data.length in renderingTheCells:", data.length, "data:", data);
     const td = renderTblButton(index, data);
-    tr.appendChild(td)
+    tr.appendChild(td);
     tbody.appendChild(tr); // Append the newly created table row to the tbody
-
   });
-  return tbody
+  return tbody;
 }
 
 function renderTblBody(data) {
   const table = renderTblHeading();
-  const tbody = renderingTheTable(data)
+  const tbody = renderingTheCells(data);
   table.appendChild(tbody);
   TBL.appendChild(table);
   //return tbody;
 }
 
-export { renderTblBody }; // we only need renderTblBody but I leave others just as reminder for me, other 2 are not required as export.
+export { renderTblBody };

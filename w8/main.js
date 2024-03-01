@@ -41,4 +41,3 @@ FORM.addEventListener("submit", function (e) {
   FORM.reset();
 });
 
-//======ASSIGNMENTS===W8 - code along - PRIVATE ===================================================================================================

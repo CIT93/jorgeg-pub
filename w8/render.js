@@ -1,7 +1,7 @@
 const TBL = document.getElementById("tab-data");
 const FORM = document.getElementById("form");
 
-function renderTblHeading() {
+function renderTblHeading(data) {
   const table = document.createElement("table");
   const thead = document.createElement("thead");
   const tr = document.createElement("tr");
@@ -28,7 +28,7 @@ function renderTblHeading() {
 }
 
 function renderTblButton(index, data) {
-  console.log("this is index in renderTblButton:", index);
+
   const tr = document.createElement("tr");
   const actionsCell = document.createElement("td");
   const btnEdit = document.createElement("button");
@@ -40,42 +40,25 @@ function renderTblButton(index, data) {
   tr.appendChild(actionsCell);
 
   btnDelete.addEventListener("click", function (e) {
-    if (index !== 0 || data.lenght !==1) {
-      console.log("this is index in btnDelete:", index);
-      console.log("this is data before splice:", data);
-      data.splice(index, 1); // hack noted
-      console.log("this is data.length after spliced:", data.length);
-      renderTblHeading(data);
-      renderTblBody(data);
+    data.splice(index, 1);
+    if (data.length === 0) {
+      // If there are no rows left, remove the entire table
+      TBL.innerHTML = "";
     } else {
-      console.log("inside else statement")
-      console.log("data.length:", data.length)
-      if (index === 0 && data.length === 1) {
-        data.splice(0, data.length); //erase all data in rows/ this one is dangerous
-        TBL.innerHTML = "";
-        console.log("this is data.length:", data.length)
-        console.log(index !== 0);
-      }}
-      data.splice(index, 1);
-      //renderTblBody(data)
+      // Otherwise, re-render the table body
+      renderTblBody(data);
+    }
   });
 
-  /*btnEdit.addEventListener("click", function(e){
-      data.splice(0, data.length);
-      FORM.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const firstName = FORM.firstname.value;
-        const lastName = FORM.lastname.value;
-      
-        const hMembers = parseInt(FORM.hmembers.value);
-        const hSize = FORM.hsize.value;
-
-        
-        FORM.reset();
-      });
-        renderTblBody(data);
-      
-  })*/
+  btnEdit.addEventListener("click", function (e) {
+    const obj = data[index];
+    FORM[1].value = obj.name;
+    FORM[2].value = obj.lastN;
+    FORM[3].value = obj.houseHold;
+    FORM[4].value = obj.houseSize;
+    data.splice(index, 1);
+    renderTblBody(data);
+  });
 
   return actionsCell;
 }
@@ -87,19 +70,15 @@ function renderingTheCells(data) {
   data.forEach(function (item, index) {
     const tr = document.createElement("tr");
     for (const [key, value] of Object.entries(item)) {
-      console.log(`key ${key}, value ${value}`);
-
       if (key !== "lastN" && key !== "actions") {
-        console.log("build it");
-
         const createCells = document.createElement("td");
         createCells.textContent = value;
-        console.log("this is something:", createCells);
+        console.log("this is createCells:", createCells);
         tr.appendChild(createCells);
         tbody.appendChild(tr);
       }
     }
-    console.log("this is data.length in renderingTheCells:", data.length, "data:", data);
+
     const td = renderTblButton(index, data);
     tr.appendChild(td);
     tbody.appendChild(tr); // Append the newly created table row to the tbody
@@ -112,6 +91,7 @@ function renderTblBody(data) {
   const tbody = renderingTheCells(data);
   table.appendChild(tbody);
   TBL.appendChild(table);
+
   //return tbody;
 }
 

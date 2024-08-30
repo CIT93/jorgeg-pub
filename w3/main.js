@@ -27,3 +27,23 @@ function determineHouseHoldPts(numberInHousehold) {
   determineHouseHoldPts(4)
 
 
+function determineHomeSizePts(homeSize) {
+    let HomeSizePoints = 0;
+
+    if (homeSize === "large") {
+        homeSizePoints = 10;
+    } else if (homeSize === "medium") {
+        homeSizePoints = 7;
+    } else if (homeSize === "small") {
+        homeSizePoints = 4;
+    } else if (homeSize === "apartment") {
+        homeSizePoints = 2;
+    } else {
+        console.log("Invalid home size");
+        
+    }
+
+    console.log(`Based on the home size ${homeSize} the points would be ${homeSizePoints}.`);
+}
+
+let homeSizePoints = "medium";

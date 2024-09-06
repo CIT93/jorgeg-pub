@@ -1,3 +1,16 @@
+function determineHouseSizePts(size) {
+  if(size === 'large') {
+    carbonFootprintPoints = carbonFootprintPoints + 10;
+  } else if(size === 'medium') {
+    carbonFootprintPoints = carbonFootprintPoints +7;
+  } else if(size === 'small') {
+    carbonFootprintPoints = carbonFootprintPoints +4;
+  } else if(size === 'apt') {
+    carbonFootprintPoints = carbonFootprintPoints +2;
+  }
+}
+
+
 function determineHouseHoldPts(numberInHousehold) {
     console.log("Inside the function");
     if (numberInHousehold === 1) {
@@ -19,12 +32,11 @@ function determineHouseHoldPts(numberInHousehold) {
   }
   
   let carbonFootprintPoints = 0;
-  // const numberInHousehold = 3;
   
   // global scope
   
-  determineHouseHoldPts(3)
-  determineHouseHoldPts(4)
+  determineHouseHoldPts(3);
+  determineHouseSizePts("apt");
 
 
 function determineHomeSizePts(homeSize) {

@@ -43,7 +43,13 @@ function determineHouseHoldPts(numberInHousehold) {
   }
 
   function displayOutput() {
-    
+    for (arr of cfpData){
+      console.log(arr);
+      const output = document.getElementById("output");
+      const newP = document.createElement("p");
+      newP.textContent = `The Carbon Footprint total is ${arr[4]}, if the number of household members is ${arr[0]}, adding ${arr[2]} and the house size is ${arr[1]}, adding ${arr[3]}.`;
+      output.appendChild(newP);
+    }
   }
 
 

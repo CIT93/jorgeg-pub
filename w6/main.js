@@ -1,3 +1,5 @@
+const FORM = document.getElementById("form");
+const OUTPUT = document.getElementById("output");
 const cfpData = [];
 
 function determineHouseSizePts(size) {
@@ -15,7 +17,6 @@ function determineHouseSizePts(size) {
 }
 
 function determineHouseHoldPts(numberInHousehold) {
-    
     let houseHoldPoints = 0;
     if (numberInHousehold === 1) {
       houseHoldPoints = 14;
@@ -60,70 +61,35 @@ function determineHouseHoldPts(numberInHousehold) {
       houseSPTS: houseSizePTS,
       cfpTotal: total
     });
-
   }
 
   function displayOutput(){
     for (obj of cfpData) {
-      console.log(obj)
-      const output = document.getElementById("output");
       const newH2 = document.createElement("h2");
       newH2.textContent = `Carbon Footprint ${obj.cfpTotal}`;
       const newH3 = document.createElement("h3");
       newH3.textContent = `Based on number in and size of home`;
       const newP = document.createElement("p");
-      newP.textContent = `This number is based on the number of people in the house ${obj.houseM} with a score of ${obj.houseMPTS}, and the house size ${obj.houseS} with a score of ${obj.houseSPTS}.`;
-      output.appendChild(newH2);
-      output.appendChild(newH3);
-      output.appendChild(newP);
+      newP.textContent = `This number is based on the number of people in the house of ${obj.houseM} with a score of ${obj.houseMPTS}, and the house size ${obj.houseS} with a score of ${obj.houseSPTS}.`;
+      OUTPUT.appendChild(newH2);
+      OUTPUT.appendChild(newH3);
+      OUTPUT.appendChild(newP);
     }
   }
 
 
-//  function displayOutput(){
-//    for (let i = 0; i < cfpData.length; i++) {
-//      console.log(i)
-//      const output = document.getElementById("output");
-//      const newH2 = document.createElement("h2");
-//      newH2.textContent = `Carbon Footprint ${cfpData[i][4]}`;
-//      const newH3 = document.createElement("h3");
-//      newH3.textContent = `Based on number in and size of home`
-//      const newP = document.createElement("p");
-//      newP.textContent = `This number is based on the number of people in the house of ${cfpData[i][0]} (score: ${cfpData[i][3]}), and a ${cfpData[i][1]} size of home (score:${cfpData[i][2]}).`;
-//      output.appendChild(newH2);
-//      output.appendChild(newH3);
-//      output.appendChild(newP);
-//    }
-//  }
+  FORM.addEventListener('submit', function(e){
+    e.preventDefault();
+    const firstName = FORM.firstname.value;
+    const lastName = FORM.lastname.value;
+    const houseMembers = parseInt(FORM.housem.value);
+    const houseSize = FORM.houses.value;
+    start(houseMembers, houseSize);
+    OUTPUT.innerHTML = "";
+    displayOutput();
+    FORM.reset();
+  })
 
-  start(5, "apt");
-  start(4, "large");
-  start(3, "medium");
-  start(2, "small");
+// The apartment score is not correct because on the main.js, "apartment" is "apt" and on the index we have it as "apartment".
+// We are doing all of this work in the form because the people who are using it might not give good data.
 
-  start(4, "apt");
-  start(3, "large");
-  start(2, "medium");
-  start(1, "small");
-
-  start(3, "apt");
-  start(2, "large");
-  start(1, "medium");
-  start(5, "small");
-
-  start(2, "apt");
-  start(1, "large");
-  start(5, "medium");
-  start(4, "small");
-
-  start(1, "apt");
-  start(5, "large");
-  start(4, "medium");
-  start(3, "small");
-
-  start(6, "apt");
-  start(6, "large");
-  start(6, "medium");
-  start(6, "small");
-
-  displayOutput()

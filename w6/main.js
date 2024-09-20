@@ -50,11 +50,13 @@ function determineHouseHoldPts(numberInHousehold) {
     output.appendChild(newP);
   }
 
-  function start(houseHoldMembers, houseSize) {
+  function start(houseHoldMembers, houseSize, firstName, lastName) {
     const houseHoldPTS = determineHouseHoldPts(houseHoldMembers);
     const houseSizePTS = determineHouseSizePts(houseSize);
     const total = houseHoldPTS + houseSizePTS;
     cfpData.push({
+      firstN: firstName,
+      lastN: lastName,
       houseM: houseHoldMembers,
       houseS: houseSize,
       houseMPTS: houseHoldPTS,
@@ -84,7 +86,7 @@ function determineHouseHoldPts(numberInHousehold) {
     const lastName = FORM.lastname.value;
     const houseMembers = parseInt(FORM.housem.value);
     const houseSize = FORM.houses.value;
-    start(houseMembers, houseSize);
+    start(houseMembers, houseSize, firstName, lastName);
     OUTPUT.innerHTML = "";
     displayOutput();
     FORM.reset();

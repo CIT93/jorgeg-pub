@@ -1,3 +1,5 @@
+import { renderTbl } from "./render.js";
+
 const FORM = document.getElementById("form");
 const OUTPUT = document.getElementById("output");
 const cfpData = [];
@@ -64,22 +66,8 @@ function determineHouseHoldPts(numberInHousehold) {
       cfpTotal: total
     });
   }
-
-  function displayOutput(){
-    for (obj of cfpData) {
-      const newH2 = document.createElement("h2");
-      newH2.textContent = `Carbon Footprint ${obj.cfpTotal}`;
-      const newH3 = document.createElement("h3");
-      newH3.textContent = `Based on number in and size of home for ${obj.firstName} ${obj.lastName}`;
-      const newP = document.createElement("p");
-      newP.textContent = `This number is based on the number of people in the house of ${obj.houseM} with a score of ${obj.houseMPTS}, and the house size ${obj.houseS} with a score of ${obj.houseSPTS}.`;
-      OUTPUT.appendChild(newH2);
-      OUTPUT.appendChild(newH3);
-      OUTPUT.appendChild(newP);
-    }
-  }
-
-
+  
+  
   FORM.addEventListener('submit', function(e){
     e.preventDefault();
     const firstName = FORM.firstname.value;
@@ -88,10 +76,19 @@ function determineHouseHoldPts(numberInHousehold) {
     const houseSize = FORM.houses.value;
     start(firstName, lastName, houseMembers, houseSize);
     OUTPUT.innerHTML = "";
-    displayOutput();
+    //displayOutput();
+    renderTbl(cfpData);
     FORM.reset();
   })
 
 // The apartment score is not correct because on the main.js, "apartment" is "apt" and on the index we have it as "apartment".
 // We are doing all of this work in the form because the people who are using it might not give good data.
 
+// Coding Challenge: Code Along - HTML Tabular Data
+// I tried to create two functions to render the table.I did renderTblHeading to generate the table header. The renderTbl was the main table element.
+
+// Coding Challenge: Code Along - coding TBL body and modules
+// I attempted to create a table by initializing the table body and a row with predefined data (`trTextArr`). I also aimed to append the table to the DOM, but couldn't figure out handling the "Edit" and "Del" buttons.
+// We got the error when we tried to appendChild because the `td` variable is not properly defined outside the loop. Since `td` is only scoped to the loop that creates table cells, it's undefined outside the loop.
+// If I was looking at (data) inside the render function it would be the data that is intended to be used to populate the table.
+// What criteria should we use to determine which functions or variables should be exported from each module?

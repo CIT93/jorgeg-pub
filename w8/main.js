@@ -29,7 +29,8 @@ function start(first, last, houseHoldMembers, houseSize,) {
     const houseSize = FORM.houses.value;
     start(firstName, lastName, houseMembers, houseSize);
     OUTPUT.innerHTML = "";
-    renderTbl(cfpData);
+    renderTbl(cfpData, FORM);
     FORM.reset();
   });
 
+  

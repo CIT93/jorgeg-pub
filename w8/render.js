@@ -16,7 +16,7 @@ function renderTblHeading () {
     return table;
   }
 
-  function renderTblBtn(index, data){
+  function renderTblBtn(index, data, form){
     const td = document.createElement("td");
     const btnEdit = document.createElement("button");
     const btnDel = document.createElement("button");
@@ -29,17 +29,21 @@ function renderTblHeading () {
       console.log(e);
       data.splice(index, 1);
       renderTbl(data);
-    })
+    });
     btnEdit.addEventListener('click', function(e){
+        const obj = data[index]; 
+        form.firstname.value = obj.firstName; 
+        form.lastname.value = obj.lastName;
+        form.housem.value = obj.houseM; 
+        form.houses.value = obj.houseS; 
 
-    })
+    });
     return td;
   }
 
-  function renderTblBody(data){
+  function renderTblBody(data, form){
     const tbody = document.createElement("tbody");
     data.forEach(function (obj, index) {
-      console.log(index);
       const tr = document.createElement("tr");
       for (const [key, value] of Object.entries(obj)) {
         if (key !== "lastName" && key !== "houseMPTS" && key !== "houseSPTS"){
@@ -48,20 +52,22 @@ function renderTblHeading () {
           tr.appendChild(td);
         } 
       }
-      const td = renderTblBtn(index, data);
+      const td = renderTblBtn(index, data, form);
       tr.appendChild(td);
       tbody.appendChild(tr);
     });
     return tbody;
   }
 
-  function renderTbl(data) {
+  function renderTbl(data, form) {
+    TBL.innerHTML = "";
     const table = renderTblHeading();
-    const tbody = renderTblBody(data);
+    const tbody = renderTblBody(data, form);
     table.appendChild(tbody);
     TBL.appendChild(table);
-  }
+    }
   
+
 export {renderTbl};
 
 

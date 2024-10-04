@@ -57,7 +57,7 @@ function renderTblHeading () {
       tbody.appendChild(tr);
     });
     return tbody;
-  }
+  };
 
   function renderTbl(data, form) {
     TBL.innerHTML = "";
@@ -65,7 +65,7 @@ function renderTblHeading () {
     const tbody = renderTblBody(data, form);
     table.appendChild(tbody);
     TBL.appendChild(table);
-    }
+    };
   
 
 export {renderTbl};

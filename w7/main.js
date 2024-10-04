@@ -1,8 +1,24 @@
 import { renderTbl } from "./render.js";
-import { addCfpData, getCfpData } from "./carbonFootprint.js";
+import {determineHouseHoldPts, determineHouseSizePts} from "./carbonFootprint.js";
 
 const FORM = document.getElementById("form");
 const OUTPUT = document.getElementById("output");
+
+function addCfpData(first, last, houseHoldMembers, houseSize,) {
+  const houseHoldPTS = determineHouseHoldPts(houseHoldMembers);
+  const houseSizePTS = determineHouseSizePts(houseSize);
+  const total = houseHoldPTS + houseSizePTS;
+  cfpData.push({
+    firstName: first,
+    lastName: last,
+    houseM: houseHoldMembers,
+    houseS: houseSize,
+    houseMPTS: houseHoldPTS,
+    houseSPTS: houseSizePTS,
+    cfpTotal: total
+  });
+}
+
   
   // function displayOutObj(obj) {
   //   console.log(obj);

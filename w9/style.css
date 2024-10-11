@@ -18,3 +18,10 @@ table, th, td {
 tbody tr:nth-child(odd) {
     background-color: rgb(140, 182, 86);
 }
+  /* style for error messages and invalid fields */
+    .error {
+        color: red;
+    }
+    .invalid {
+        border-color: red;
+    }

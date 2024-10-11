@@ -20,7 +20,6 @@ function start(first, last, houseHoldMembers, houseSize,) {
   });
 }
 
-  
   FORM.addEventListener('submit', function(e){
     e.preventDefault();
     const firstName = FORM.firstname.value;

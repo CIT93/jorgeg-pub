@@ -3,7 +3,7 @@ import {determineHouseHoldPts, determineHouseSizePts} from "./carbonFootprint.js
 import {FORM, FNAME, LNAME, SUBMIT} from "./global.js"
 import {saveLS, cfpData} from "./storage.js"
 
-const start = (first, last, houseHoldMembers, houseSize,) => {
+const start = (first, last, houseHoldMembers, houseSize) => {
   const houseHoldPTS = determineHouseHoldPts(houseHoldMembers);
   const houseSizePTS = determineHouseSizePts(houseSize);
   const total = houseHoldPTS + houseSizePTS;
@@ -17,6 +17,7 @@ const start = (first, last, houseHoldMembers, houseSize,) => {
     cfpTotal: total,
   });
 }
+
 
   renderTbl(cfpData);
 

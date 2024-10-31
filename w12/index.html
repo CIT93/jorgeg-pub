@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Challenge wk 12</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" defer src="main.js"></script>
+</head>
+<body>
+    <form id="form">
+        <fieldset id="fieldset">
+            <legend>Time to get FIT!</legend>
+            <div>
+                <label>Type of exercise:</label>
+                <select name="exerciseType" required>
+                  <option value="">---choose a workout---</option>
+                  <option value="Pullups">Pull ups</option>
+                  <option value="Curls">Curls</option>
+                  <option value="Squats">Squats</option>
+                  <option value="Pushups">Push ups</option>
+                  <option value="JumpingJacks">Jumping Jacks</option>
+                  <option value="Lunges">Lunges</option>
+                  <option value="Plank">Plank</option>
+                </select>
+              </div>
+            <div>
+                <label>How many Reps:</label>
+                <input type="number" name="Repsnumber" id="number" required>
+            </div>
+            <div>
+                <label>Time in minutes:</label>
+                <input type="number" name="Time" id="time" required>
+            </div>
+            <button type="submit">Submit</button>
+        </fieldset>
+    </form>
+    <div id="output"></div>
+    <h1>Submit to start!</h1>
+</body>
+</html>

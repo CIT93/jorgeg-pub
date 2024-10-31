@@ -1,7 +1,7 @@
 const saveLS = cfpData => {
     const serializedArr = JSON.stringify(cfpData);
     localStorage.setItem("cfp", serializedArr);
-}
+};
 
 const getLS = () => {
     const retrievedArr = localStorage.getItem("cfp");
@@ -10,7 +10,7 @@ const getLS = () => {
     } else {
         return [];
     }
-}
+};
 
 const cfpData = getLS();
 

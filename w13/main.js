@@ -1,7 +1,6 @@
 const FORM = document.getElementById('form');
 const OUT = document.getElementById('output');
 
-// Function that updates the DOM with a message
 function updateDOM(message, el) {
     const newEl = document.createElement(el);
     newEl.textContent = message;
@@ -10,13 +9,29 @@ function updateDOM(message, el) {
 
 const startWorkout = (type, reps, time, fn) => {
     fn(`Start ${type} <> Goal reps is ${reps} <> complete in ${time} min!`, "p");
-    setTimeout(() => {
-        fn(`Stop ${type}`, "h1");
-    }, time * 1000);
+    return new Promise((resolve) => {
+        
+        setTimeout(() => {
+            fn(`It should take ${time} Minutes`, "p"); 
+            resolve();
+        }, time * 1000);
+    })
+    .then(() => new Promise((resolved) => { 
+
+        setTimeout(() => {
+            fn(`Stop ${type}!`, "p");
+            console.log(`Success: ${type} workout completed`);
+            resolved();
+        }, time * 5000);
+    }))
+    .catch((error) => {
+        fn(`Error: ${error}`, "p");
+        console.error("Could not load workout:", error);
+    });
 };
 
 // Event listener for form submission
-FORM.addEventListener('submit', e => {
+FORM.addEventListener('submit', (e) => {
     e.preventDefault();
     const type = e.target.exerciseType.value;
     const reps = parseFloat(e.target.Repsnumber.value);
@@ -24,6 +39,40 @@ FORM.addEventListener('submit', e => {
     startWorkout(type, reps, time, updateDOM);
     FORM.reset();
 });
+
+
+
+
+
+// const FORM = document.getElementById('form');
+// const OUT = document.getElementById('output');
+
+// // Function that updates the DOM with a message
+// function updateDOM(message, el) {
+//     const newEl = document.createElement(el);
+//     newEl.textContent = message;
+//     OUT.appendChild(newEl);
+// }
+
+// const startWorkout = (type, reps, time, fn) => {
+//     fn(`Start ${type} <> Goal reps is ${reps} <> complete in ${time} min!`, "p");
+//     setTimeout(() => {
+//         fn(`Stop ${type}`, "h1");
+//     }, time * 1000);
+// };
+
+// // Event listener for form submission
+// FORM.addEventListener('submit', e => {
+//     e.preventDefault();
+//     const type = e.target.exerciseType.value;
+//     const reps = parseFloat(e.target.Repsnumber.value);
+//     const time = parseFloat(e.target.Time.value);
+//     startWorkout(type, reps, time, updateDOM);
+//     FORM.reset();
+// });
+
+
+
 
 
 

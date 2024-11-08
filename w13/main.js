@@ -10,7 +10,6 @@ function updateDOM(message, el) {
 
 const startWorkout = (type, reps, time, fn) => {
     fn(`Start ${type} <> Goal reps is ${reps} <> complete in ${time} min!`, "p");
-
     setTimeout(() => {
         fn(`Stop ${type}`, "h1");
     }, time * 1000);
@@ -25,6 +24,10 @@ FORM.addEventListener('submit', e => {
     startWorkout(type, reps, time, updateDOM);
     FORM.reset();
 });
+
+
+
+
 
 
 

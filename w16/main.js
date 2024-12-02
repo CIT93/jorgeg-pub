@@ -47,8 +47,9 @@ const start = (first, last, houseHoldMembers, houseSize) => {
         e.target.houses.value,
         e.target.food.value,
         e.target.foodSource.value,
-        parseInt(e.target.water.value),
-        e.target.hasBoth.checked
+        parseInt(e.target.housePurchases.value),
+        parseInt(e.target.water.value), 
+        e.target.hasBoth.checked 
       );
   
       cfpData.push(footprintObj);

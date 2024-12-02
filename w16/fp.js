@@ -1,36 +1,40 @@
 class FP {
-  constructor(first, last, houseMembers, houseSize, foodChoice, foodSource, waterConsum) {
+  constructor(first, last, houseMembers, houseSize, foodChoice, foodSource, waterConsumption, hasBoth) {
     this.first = first;
     this.last = last;
     this.houseMembers = houseMembers;
     this.houseSize = houseSize;
     this.foodChoice = foodChoice;
     this.foodSource = foodSource;
-    this.waterConsumPoints = waterConsum;
-    this.calHouseHoldPoints();
-    this.calHouseSizePoints();
-    this.calFoodChoicePoints();
-    this.calFoodSourcePoints();
-    this.calTotal();
+    this.waterConsumptionPoints = waterConsumption;
+    this.hasBoth = hasBoth;
+    this.calculateHouseholdPoints();
+    this.calculateHomeSizePoints();
+    this.calculateFoodPoints();
+    this.calculateFoodSourcePoints();
+    this.calculateWaterPoints();
+    this.calculateTotal();
   }
-  calHouseHoldPoints() {
+
+  calculateHouseholdPoints() {
     if (this.houseMembers === 1) {
-      this.houseHoldPoints = 14;
+      this.householdPoints = 14;
     } else if (this.houseMembers === 2) {
-      this.houseHoldPoints = 12;
+      this.householdPoints = 12;
     } else if (this.houseMembers === 3) {
-      this.houseHoldPoints = 10;
+      this.householdPoints = 10;
     } else if (this.houseMembers === 4) {
-      this.houseHoldPoints = 8;
+      this.householdPoints = 8;
     } else if (this.houseMembers === 5) {
-      this.houseHoldPoints = 6;
+      this.householdPoints = 6;
     } else if (this.houseMembers === 6) {
-      this.houseHoldPoints = 4;
+      this.householdPoints = 4;
     } else if (this.houseMembers > 6) {
-      this.houseHoldPoints = 2;
+      this.householdPoints = 2;
     }
   }
-  calHouseSizePoints() {
+
+  calculateHomeSizePoints() {
     if (this.houseSize === "large") {
       this.houseSizePoints = 10;
     } else if (this.houseSize === "medium") {
@@ -41,7 +45,8 @@ class FP {
       this.houseSizePoints = 2;
     }
   }
-  calFoodChoicePoints() {
+
+  calculateFoodPoints() {
     if (this.foodChoice === "daily_meat") {
       this.foodPoints = 10;
     } else if (this.foodChoice === "weekly_meat") {
@@ -53,7 +58,7 @@ class FP {
     }
   }
 
-  calFoodSourcePoints() {
+  calculateFoodSourcePoints() {
     if (this.foodSource === "packed") {
       this.foodSourcePoints = 12;
     } else if (this.foodSource === "balance") {
@@ -63,13 +68,21 @@ class FP {
     }
   }
 
-  calTotal() {
+  calculateWaterPoints() {
+    if (this.hasBoth) {
+      this.totalWaterPoints = this.waterConsumptionPoints * 2;
+    } else {
+      this.totalWaterPoints = this.waterConsumptionPoints;
+    }
+  }
+
+  calculateTotal() {
     this.total =
-      this.houseHoldPoints +
+      this.householdPoints +
       this.houseSizePoints +
       this.foodPoints +
       this.foodSourcePoints +
-      this.waterConsumPoints;
+      this.totalWaterPoints;
   }
 }
 

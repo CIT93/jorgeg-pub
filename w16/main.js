@@ -34,29 +34,29 @@ const start = (first, last, houseHoldMembers, houseSize) => {
   FNAME.addEventListener('blur', validateField);
   LNAME.addEventListener('blur', validateField);
 
-  FORM.addEventListener('submit', e => {
+  FORM.addEventListener("submit", (e) => {
     e.preventDefault();
-
-    if (FNAME.value !== '' && LNAME.value !== '') {
-        SUBMIT.textContent = '';
-        const fpObj = new FP(
-            FNAME.value,
-            LNAME.value,
-            parseInt(e.target.housem.value),
-            e.target.houses.value,
-            e.target.food.value,
-            e.target.foodSource.value,
-            parseInt(e.target.water.value),
-        );
-        cfpData.push(fpObj);
-        saveLS(cfpData);
-        renderTbl(cfpData);
-        FORM.reset(); 
+  
+    if (FNAME.value !== "" && LNAME.value !== "") {
+      SUBMIT.textContent = "";
+  
+      const footprintObj = new FP(
+        FNAME.value,
+        LNAME.value,
+        parseInt(e.target.housem.value),
+        e.target.houses.value,
+        e.target.food.value,
+        e.target.foodSource.value,
+        parseInt(e.target.water.value),
+        e.target.hasBoth.checked
+      );
+  
+      cfpData.push(footprintObj);
+      saveLS(cfpData);
+      renderTbl(cfpData);
+      FORM.reset();
     } else {
-        SUBMIT.textContent = "Form requires first name and last name";
+      SUBMIT.textContent = "Form requires first name and last name";
     }
-});
-
-
-// Code Challenge: I had trouble adding the dynamic behavior. I know I can use an if else but having trouble making the input unedible.
+  });
 

@@ -4,16 +4,16 @@ import { saveLS } from "./storage.js";
 const calculateAvg = (data) => {
     const reduceTotal = data.reduce((sum, ea) => sum + ea.total, 0);
     const tableRef = document.getElementById("table-id");
-    let newRow = tableRef.insertRow(-1);
-    let newCell = newRow.insertCell(0);
-    let newCell_1 = newRow.insertCell(0);
-    let newCell_2 = newRow.insertCell(0);
-    let newCell_3 = newRow.insertCell(0);
-    let newCell_4 = newRow.insertCell(0);
+    let newTR = tableRef.insertRow(-1);
+    let newTD = newTR.insertCell(0);
+    let newTD_1 = newTR.insertCell(0);
+    let newTD_2 = newTR.insertCell(0);
+    // let newTD_3 = newTR.insertCell(0);
+    // let newTD_4 = newTR.insertCell(0);
     let newLabl = document.createTextNode(`Average Footprint`);
     let newText = document.createTextNode(`${Math.floor(reduceTotal/data.length)}`);
-    newCell_1.appendChild(newLabl);
-    newCell.appendChild(newText);
+    newTD_1.appendChild(newLabl);
+    newTD.appendChild(newText);
 }
 
 const renderTblHeading = () => {
@@ -21,7 +21,7 @@ const renderTblHeading = () => {
     table.setAttribute("id", "table-id")
     const thead = document.createElement("thead");
     const tr = document.createElement("tr");
-    const headingTextArr = ["Name", "Household", "HouseSize", "Food Choice", "Footprint", "Actions"]
+    const headingTextArr = ["First", "Last", "Footprint Total", "Actions"];
     headingTextArr.forEach(text => {
         const th = document.createElement("th");
         th.textContent = text;
@@ -55,6 +55,8 @@ const renderTblBtn = (obj, index, data) => {
         FORM.housem.value = obj.houseMembers;
         FORM.houses.value = obj.houseSize;
         FORM.food.value = obj.foodChoice; 
+        FORM.foodSource.value = obj.foodSource;
+        FORM.water.value = obj.waterConsumPoints.toString();
         onUpdate(index, data);
     });
     return td;
@@ -64,7 +66,7 @@ const renderTblBody = data => {
     const tbody = document.createElement("tbody");
     data.forEach((obj, index) => {
         const tr = document.createElement("tr");
-        const keys = ["first", "houseMembers", "houseSize", "foodChoice", "total"]
+        const keys = ["first", "last", "total"]
             keys.forEach(key => {
                 const td = document.createElement("td");
                 td.textContent = obj[key];

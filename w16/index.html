@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="main.js"></script>
-    <title>Week 15 - Carbon Footprint - Pub</title>
+    <title>Week 16 - Carbon Footprint - Pri</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -13,12 +13,12 @@
         <legend>Calculating Your Carbon Footprint Points</legend>
         <div>
           <label>First Name:</label>
-          <input type="text" name="firstname" id="firstName" maxLength="20"/>
+          <input type="text" name="first" id="firstName" maxLength="20" />
           <span id="firstNameError" class="error"></span>
         </div>
         <div>
           <label>Last Name:</label>
-          <input type="text" name="lastname" id="lastName" maxlength="20"/>
+          <input type="text" name="last" id="lastName" maxlength="20" />
           <span id="lastNameError" class="error"></span>
         </div>
         <div>
@@ -43,11 +43,27 @@
             <option value="weekly_meat">Meat Few Times per Week</option>
             <option value="vegetarian">Vegetarian</option>
             <option value="vegan_wild_meat">Vegan / Wild Meat</option>
-            <option value="prepackaged">Mostly Prepackaged Food</option>
-            <option value="balanced">Balanced Fresh & Convenience</option>
-            <option value="fresh_local">Fresh, Local, or Hunted Food</option>
           </select>
         </div>
+        <div>
+          <label>Evaluate your food sources</label>
+          <select name="foodSource" id="foodSource" required>
+              <option value="">---Select a food source---</option>
+              <option value="packed">Mostly Prepackaged Food</option>
+              <option value="balance">Balanced Fresh & Convenience</option>
+              <option value="local">Fresh, Local, or Hunted Food</option>
+          </select>
+      </div>
+      <div>
+        <label>Water Consumption</label>
+        <select name="water" required>
+          <option value="">---How many times do you run dishwasher or washing machine---</option>
+          <option value="3">More than 9 times per week</option>
+          <option value="2">Between 4 to 9 times per week</option>
+          <option value="1">Between 1 to 3 times per week</option>
+          <option value="0">Don't have a dishwasher</option>
+        </select>
+      </div>
         <button type="submit">Submit</button><br>
         <span id="submitError" class="error"></span>
       </fieldset>

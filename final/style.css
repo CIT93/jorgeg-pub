@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3d8b5;
+}
+
+#sleep-output {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #f7e9ff;
+    border: 2px solid purple;
+}
+
+th, td {
+    border: 1px solid purple;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #9f6cc3;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #d8a8f5;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f3d8b5;
+}
+
+button {
+    margin: 0 5px;
+    padding: 5px 10px;
+}
+
+#tip-message {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f7e9ff;
+    border: 2px solid purple;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #6c3ca3;
+    line-height: 1.5;
+}

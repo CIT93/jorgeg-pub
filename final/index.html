@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sleep Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" defer src="main.js"></script>
+  </head>
+  <body>
+    <main>
+      <form id="sleep-form">
+        <fieldset>
+          <legend>Track Your Sleep Hours</legend>
+          <section>
+            <label for="firstName">First Name:</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              maxlength="20"
+              required
+            />
+            <span id="firstNameError" class="error"></span>
+          </section>
+          <section>
+            <label for="lastName">Last Name:</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              maxlength="20"
+              required
+            />
+            <span id="lastNameError" class="error"></span>
+          </section>
+          <section>
+            <label for="day">Day of the Week:</label>
+            <select id="day" name="day" required>
+              <option value="Monday">Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+              <option value="Saturday">Saturday</option>
+              <option value="Sunday">Sunday</option>
+            </select>
+          </section>
+          <section>
+            <label for="sleepHours">Sleep Hours:</label>
+            <input
+              type="number"
+              id="sleepHours"
+              name="sleepHours"
+              min="5"
+              max="12"
+              required
+            />
+            <span id="sleepHoursError" class="error"></span>
+          </section>
+          <section>
+            <button type="submit">Track Sleep</button>
+            <span id="submitError" class="error"></span>
+          </section>
+        </fieldset>
+      </form>
+
+      <section id="sleep-output">
+        <h2>Your Sleep Data</h2>
+        <table id="sleep-table">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Day</th>
+              <th>Sleep Hours</th>
+              <th>Sleep Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <section id="sleep-tips">
+        <h3>Sleep Tips</h3>
+        <p id="tip-message">Enter your sleep data to see helpful tips!</p>
+      </section>
+    </main>
+  </body>
+</html>
